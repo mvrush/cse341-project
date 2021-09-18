@@ -22,7 +22,6 @@ const requestHandler = (req, res) => {
         res.setHeader('Content-Type', 'text/html');
         res.write('<html');
         res.write('<head><title>Prove01 Users</title></head>');
-      //  res.write('<body><ul><li>Mike</li><li>Bill</li></ul></body>'); // this was how I originally created my list
         res.write('<ul>');
         for (const user of users) {
             res.write(`<li>${user}</li>`);
