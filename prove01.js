@@ -4,6 +4,6 @@ const routes = require('./prove01-routes'); // since this is not a global module
 
 console.log(routes.someText);
 
-const server = http.createServer(routes); // tells Node to just execute the function stored in the const = routes.
+const server = http.createServer(routes.handler); // tells Node to just execute the function stored in the const = routes.
 
 server.listen(3000);
