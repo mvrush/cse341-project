@@ -9,8 +9,11 @@ const requestHandler = (req, res) => {
     const method = req.method; // parses the method because later we require the method === POST and we need it to look for the method used (GET or POST).
     if (url === '/') {
         res.write('<html>');
-        res.write('<head><title>Enter Message</title><head>');
-        res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form></body>');
+        res.write('<head><title>Prove01</title><head>');
+        res.write('<body>');
+        res.write('<h1>Welcome to Prove01 for CSE341</h1>');
+        res.write ('<form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form>');
+        res.write ('</body>');
         res.write('</html>');
         return res.end(); //putting 'return' in front of res.end() will cause it to exit the anonymous function and not continue executing code.
     }
