@@ -3,10 +3,10 @@ const { request } = require('http');
 const { runInNewContext } = require('vm');
 
 
+let users = ['Mike', 'Phil'];
 const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method; // parses the method because later we require the method === POST and we need it to look for the method used (GET or POST).
-    let users = ['Mike', 'Phil'];
     if (url === '/') {
         res.setHeader('Content-Type', 'text/html');
         res.write('<html>');
