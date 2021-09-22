@@ -7,11 +7,10 @@ const router = express.Router();
 const nameList = ['Peter','James','John'];
 let message=''; // this variable erases the error messages on page reload. It has global page scope.
 
-// For requirement 02 of TA02
 router.post('/addName', (req, res, next)=>{  
   const index = nameList.indexOf(req.body.nameInput);
   if (index > -1) {
-    message = "ERROR! Name already on list!";
+    message = "ERROR! No Clones allowed!";
   }
   else {
     nameList.push(req.body.nameInput);
@@ -20,25 +19,21 @@ router.post('/addName', (req, res, next)=>{
   console.log("Adding "+req.body.nameInput);
   res.redirect('/ta02');
 });
-
-// Fo requirement 03 of TA02
 router.post('/removeName', (req, res, next)=>{
   console.log("Removing "+req.body.nameInput);
-  // Splice method removes from a const array. It's a JavaScript function
   const index = nameList.indexOf(req.body.nameInput);
   if (index > -1) {
     nameList.splice(index, 1);
     message = "";
   }
   else {
-    message = "ERROR! No user found!";
+    message = "ERROR! You can't kill the dead!";
   }
   nameList.push();
   
   res.redirect('/ta02');
 });
 
-// Sets up all the variables we'll use in our view.
 router.get('/', (req, res, next) => {
   console.log('Setup wariables');
   res.render('pages/ta02', {
