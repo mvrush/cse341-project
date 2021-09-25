@@ -33,6 +33,22 @@ router.post('/add-product', (req, res, next) => {
     res.redirect('/'); // this redirects the user to '/' after extracting their input. redirect() is a built-in express function.
 });
 
+router.post('/remove-product', (req, res, next)=>{
+    console.log("Removing "+req.body.title);
+    const index = products.indexOf(req.body.title);
+    if (index > -1) {
+      products.splice(index, 1);
+      message = "";
+    }
+    else {
+      message = "ERROR! No Product By That Title";
+    }
+    products.push();
+    
+    res.redirect('/');
+  });
+
+
 // The following two lines uses the express module 'exports' to export our 'router' and 'products' constants defined above.
 exports.routes = router;
 exports.products = products;

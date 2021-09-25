@@ -18,11 +18,22 @@ Since includes is in the views folder you can just type 'includes/head.ejs'. -->
                 <input type="text" name="title" id="title">
                 <label for="title">Price</label>
                 <input type="number" placeholder="00.00" step="0.01" name="price" id="price">
-                <label for="title">Desc</label>
-                <input type="text" name="desc" id="desc">
+                <label for="title">Description</label>
+                <textarea rows="4" columns="50" name="desc" id="desc" placeholder="Enter a description"></textarea>
             </div>
 
             <button class="btn" type="submit">Add Product</button>
         </form>
+
+        <h2>Remove a Product</h2>
+        <form class="product-form" action="/admin/remove-product" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+            </div>
+
+            <button class="btn" type="submit">Remove Product</button>
+        </form>
+
     </main>
 <%- include('includes/end.ejs') %>
