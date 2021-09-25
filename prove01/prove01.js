@@ -1,3 +1,5 @@
+// To run this app type 'node prove01.js' in the terminal. View it at localhost:3000
+
 const http = require('http');
 
 const routes = require('./prove01-routes'); // since this is not a global module we add the local path to routes.js with ./ and you can also drop the .js from routes.
