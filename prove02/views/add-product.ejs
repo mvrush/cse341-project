@@ -1,0 +1,28 @@
+<!-- the following line is an EJS include. You simply include the path to the file you want to render.
+Since includes is in the views folder you can just type 'includes/head.ejs'. -->
+<%- include('includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+    
+</head>
+
+<body>
+<%- include('includes/navigation.ejs') %>
+
+    <main>
+        <h1>Add a Product</h1>
+        <form class="product-form" action="/admin/add-product" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+                <label for="title">Price</label>
+                <input type="number" placeholder="00.00" step="0.01" name="price" id="price">
+                <label for="title">Desc</label>
+                <input type="text" name="desc" id="desc">
+            </div>
+
+            <button class="btn" type="submit">Add Product</button>
+        </form>
+    </main>
+<%- include('includes/end.ejs') %>
