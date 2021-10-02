@@ -14,6 +14,7 @@ const requestHandler = (req, res) => {
         res.write('<body>');
         res.write('<h1>Welcome to Prove01 for CSE341</h1>');
         res.write ('<form action="/create-user" method="POST"><input type="text" name="username"><button type="submit">Add User</button></form>');
+        res.write ('<a href="/users">See the users</a>')
         res.write ('</body>');
         res.write('</html>');
         return res.end();
@@ -27,6 +28,7 @@ const requestHandler = (req, res) => {
             res.write(`<li>${user}</li>`);
         }
         res.write('</ul>');
+        res.write ('<a href="/">Return to Add-User</a>')
         res.write('</html>');
         return res.end();
     }

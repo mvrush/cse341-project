@@ -10,6 +10,7 @@ let message=''; // this variable erases the error messages on page reload. It ha
 // For requirement 02 of TA02
 router.post('/addName', (req, res, next)=>{  
   const index = nameList.indexOf(req.body.nameInput);
+  console.log(index); // this line tells us the index position in the array of the inputted name in the console
   if (index > -1) {
     message = "ERROR! Name already on list!";
   }
@@ -26,6 +27,7 @@ router.post('/removeName', (req, res, next)=>{
   console.log("Removing "+req.body.nameInput);
   // Splice method removes from a const array. It's a JavaScript function
   const index = nameList.indexOf(req.body.nameInput);
+  console.log(index); // this line tells us the index position in the array of the inputted name in the console
   if (index > -1) {
     nameList.splice(index, 1);
     message = "";

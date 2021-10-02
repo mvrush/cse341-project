@@ -8,6 +8,8 @@ const router = express.Router();
 
 const products = [];
 
+message = '';
+
 
 router.get('/add-product', (req, res, next) => {
     res.render('add-product', {
@@ -15,7 +17,8 @@ router.get('/add-product', (req, res, next) => {
         path: '/admin/add-product',
         formsCSS: true,
         productCSS: true,
-        activeAddProduct: true
+        activeAddProduct: true,
+        message: message
     });
 });
 
