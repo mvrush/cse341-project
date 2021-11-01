@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../includes/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="stylesheets/pa08.css"/>
+</head>
+
+<body>
+  <% include ../includes/nav.ejs %>
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>
+          <%= title %>
+        </h1>
+      </div>
+    </div>
+    <form action="/ta03" method="POST">
+      <input type="text" name="search">
+      <button type="submit">Search</button>
+    </form>
+    <div class="container">
+          <% for( let book of filterMesh) { %>
+          <% include ../includes/card.ejs %>
+        <% } %>
+
+    </div>
+
+</body>
+
+</html>
