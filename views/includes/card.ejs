@@ -1,19 +1,20 @@
 <div>
-    <article class="card product-item">
-        <header class="card__header">
-            <h1 class="product__title"><%= book.name %></h1>
+    <% for(var i=0; i<data.length; i++) {%>
+        <% if(i % 3 == 0) { %>
+        <div class="cardContainer">
+        <% } %>
+        <div class="card">
+        <header>
+            <h4><%= data[i].name %></h4>
         </header>
-
-        <div class="card__image">
-            <img src="<%= book.imageUrl %>"
-                alt="<%= book.name %>">
+            <img src="<%= data[i].imageUrl %>" alt="t" class="cardImg">
+            <div class="cardText">
+            <h5>$<%= data[i].price %></h5>
+            <p><%= data[i].description %></p>
+            </div>
+        <% if(i % 3 == 2) { %>
         </div>
-
-        <div class="card__content">
-            <h2 class="product__price">$<%= book.price %></h2>
-            <p class="product__description"><%= book.description %></p>
+        <% } %>
         </div>
-
-    </article>
-
+    <% } %>
 </div>

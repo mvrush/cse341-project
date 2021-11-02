@@ -2,30 +2,50 @@
 <html>
 
 <head>
-  <% include ../includes/header.ejs %>
-  <link rel="stylesheet" type="text/css" href="stylesheets/pa08.css"/>
+<% include ../includes/header.ejs %>
+<title><%= title %></title>
+<link href="/stylesheets/pa08.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
-  <% include ../includes/nav.ejs %>
-    <div class="jumbotron text-center">
-      <div class="container">
-        <h1>
-          <%= title %>
-        </h1>
-      </div>
-    </div>
-    <form action="/ta03" method="POST">
-      <input type="text" name="search">
-      <button type="submit">Search</button>
-    </form>
-    <div class="container">
-          <% for( let book of filterMesh) { %>
-          <% include ../includes/card.ejs %>
-        <% } %>
+<% include ../includes/nav.ejs %>
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>
+      <%= title %>
+    </h1>
+    <p>JSON, Pagination and MVC</p>
+  </div>
+</div>
+<div class="container">
+  <form action="/pa08" method="POST" class="form-inline">
+    <input type="text" name="searchValue" placeholder="Search by Title" class="form-control" style="width:300px">
+    <button type="submit" class="btn btn-primary">Search</button>
+    <% if (searchedValue.length > 0) { %>
+    <a type="button" href="/pa08" class="btn btn-default">Clear Search Results</a>
+    <h3>Showing search results for: <%= searchedValue %></h3>
+    <% } %>
+  </form>
+  <h1>JSON Results</h1>
 
-    </div>
+    <% include ../includes/card.ejs %>
 
+
+
+</div>
+<!-- Pagination button generation -->
+<form class="actions container">
+  <a href="?page=1" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">First</a>
+  <% var p = numPages %>
+    <a href="?page=<%= p %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Last</a>
+  <br>
+  <a href="?page=<%= (page > 1) ? (page - 1) : (page = 1) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Previous</a> -
+  <a href="?page=<%= (page < numPages) ? (page - -1) : (page = numPages) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Next</a>
+  <% for(var i = 1; i <= numPages; i++) { %>
+  <a href="?page=<%= i %><%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>"><%= i %></a>
+  <% } %>
+</div>
 </body>
-
 </html>
+
