@@ -41,7 +41,7 @@
     <a href="?page=<%= p %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Last</a>
   <br>
   <a href="?page=<%= (page > 1) ? (page - 1) : (page = 1) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Previous</a> -
-  <a href="?page=<%= (page < numPages) ? (page - -1) : (page = numPages) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Next</a>
+  <a href="?page=<%= (page < numPages) ? (page - -1) : (page = numPages) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Next</a> <!-- had to use a double negative on (page - -1) instead of + because + was concatenating the page number with 1-->
   <% for(var i = 1; i <= numPages; i++) { %>
   <a href="?page=<%= i %><%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>"><%= i %></a>
   <% } %>
