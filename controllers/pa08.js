@@ -17,7 +17,7 @@ const renderIndex = (req, res, json) => {
       x.name.toLowerCase().includes(searchedValue.toLowerCase())
   )
 
-  let stuff = {
+  let fields = {
       data: filteredData.slice(indexStart, indexEnd), // For JSON/Array and not Mongoose, .slice() works best.
       path: '/pa08',
       title: 'Prove Assignment 08',
@@ -26,11 +26,11 @@ const renderIndex = (req, res, json) => {
       numPages: Math.ceil(filteredData.length / ITEMS_PER_PAGE)
   }
 
-  res.render('pages/pa08', stuff)
+  res.render('pages/pa08', fields)
 }
 
-exports.processJson = (req, res, next) => {
-  // read json
+exports.pullJson = (req, res, next) => {
+  // pull json from URL
   var url = 'https://byui-cse.github.io/cse341-course/lesson03/items.json'
 
   https
@@ -52,68 +52,10 @@ exports.processJson = (req, res, next) => {
       })
 }
 
-// New code for W08...
-exports.getIndex = (req, res, next) => {
+exports.buildIndex = (req, res, next) => {
   renderIndex(req, res, global.jsonResponse) // Render page.
 }
 
 
-// let contents='';
-// https.get(fileName,(res) => {
-//     let body = "";
-
-//     res.on("data", (chunk) => {
-//         body += chunk;
-//     });
-
-//     res.on("end", () => {
-//         try {
-//             contents = JSON.parse(body);
-//         } catch (error) {
-//             console.error(error.message);
-//         };
-//     });
-// }).on("error", (error) => {
-//     console.error(error.message);
-// });
-
-// exports.getBody = (req, res, next) => {
-//     console.log("This is our req.query.search from 'getBody'", req.query.search);
-//     res.render('pages/pa08', {
-//       title: 'Prove Assignment 08',
-//       path: '/pa08', // For pug, EJS
-//       json: contents,
-//       filterMesh: contents
-//     });
-//   }
-
-// exports.postBody = (req, res, next) => {
-
-//     filterJson=contents;
-//     console.log(req.body);
-//     if(req.body.search !== undefined)
-//     {
-    
-//       filterJson = contents.filter((item)=>{
-//       mesh= req.body.search;
-//       console.log(mesh);
-//       if(item.name.includes(mesh)||item.description.includes(mesh))
-//       {
-//         return true;
-//       }
-//       for( tag of item.tags)
-//       {
-//         if(tag.includes(mesh))
-//           return true;
-//       }
-//     });
-//     }
-//     res.render('pages/pa08', {
-//       title: 'Prove Assignment 08',
-//       path: '/pa08', // For pug, EJS
-//       json: contents,
-//       filterMesh: filterJson
-//     });
-//   };
 
 

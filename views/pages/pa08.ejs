@@ -27,24 +27,38 @@
     <h3>Showing search results for: <%= searchedValue %></h3>
     <% } %>
   </form>
-  <h1>JSON Results</h1>
+  <h1>JSON Data</h1>
+  <!-- Pagination button generation -->
+<form class="actions container">
+  <a href="?page=1<%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">First</a> -
+  <% var p = numPages %>
+    <a href="?page=<%= p %><%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Last</a>
+  <br>
+  <a href="?page=<%= (page > 1) ? (page - 1) : (page = 1) %><%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Prev</a> -
+  <a href="?page=<%= (page < numPages) ? (page - -1) : (page = numPages) %><%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Next</a> <!-- had to use a double negative on (page - -1) instead of + because + was concatenating the page number with 1-->
+  <% for(var i = 1; i <= numPages; i++) { %>
+  <a href="?page=<%= i %><%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>"><%= i %></a>
+  <% } %>
+  </form>
 
     <% include ../includes/card.ejs %>
 
 
 
 </div>
+
 <!-- Pagination button generation -->
 <form class="actions container">
-  <a href="?page=1" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">First</a>
+  <a href="?page=1" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">First</a> -
   <% var p = numPages %>
     <a href="?page=<%= p %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Last</a>
   <br>
-  <a href="?page=<%= (page > 1) ? (page - 1) : (page = 1) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Previous</a> -
+  <a href="?page=<%= (page > 1) ? (page - 1) : (page = 1) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Prev</a> -
   <a href="?page=<%= (page < numPages) ? (page - -1) : (page = numPages) %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">Next</a> <!-- had to use a double negative on (page - -1) instead of + because + was concatenating the page number with 1-->
   <% for(var i = 1; i <= numPages; i++) { %>
   <a href="?page=<%= i %><%= (searchedValue) ? `&searchValue=${searchedValue}` :  "" %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>"><%= i %></a>
   <% } %>
+  </form>
 </div>
 </body>
 </html>
